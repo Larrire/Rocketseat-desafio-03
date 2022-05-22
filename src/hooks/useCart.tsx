@@ -90,9 +90,9 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return
       }
 
-      const totalProductsAtStockById = (await api.get(`/stock/${productId}`)).data.amount
+      const totalProductsAtStockById:Stock = (await api.get(`/stock/${productId}`)).data
 
-      if( amount > totalProductsAtStockById ) {
+      if( amount > totalProductsAtStockById.amount ) {
         throw new Error("Quantidade solicitada fora de estoque");
       }
 
